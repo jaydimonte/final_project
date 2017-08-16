@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @order.errors.any? %>
+  <% @order.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Order</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_order" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @order.user_id %>">
+      </div>
+
+      <!-- Label and input for super -->
+      <div class="form-group">
+        <label for="super" class="control-label">
+          Super
+        </label>
+
+        <input type="text" id="super" name="super" placeholder="Super" class="form-control" value="<%= @order.super %>">
+      </div>
+
+      <!-- Label and input for medium -->
+      <div class="form-group">
+        <label for="medium" class="control-label">
+          Medium
+        </label>
+
+        <input type="text" id="medium" name="medium" placeholder="Medium" class="form-control" value="<%= @order.medium %>">
+      </div>
+
+      <!-- Label and input for lite -->
+      <div class="form-group">
+        <label for="lite" class="control-label">
+          Lite
+        </label>
+
+        <input type="text" id="lite" name="lite" placeholder="Lite" class="form-control" value="<%= @order.lite %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Order
+      </button>
+      or
+      <a href="/orders">Cancel</a>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<!-- Validation failure messages -->
+<% if @shipment.errors.any? %>
+  <% @shipment.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Shipment</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_shipment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for order_id -->
+      <div class="form-group">
+        <label for="order_id" class="control-label">
+          Order
+        </label>
+
+        <input type="text" id="order_id" name="order_id" placeholder="Order" class="form-control" value="<%= @shipment.order_id %>">
+      </div>
+
+      <!-- Label and input for cycle_id -->
+      <div class="form-group">
+        <label for="cycle_id" class="control-label">
+          Cycle
+        </label>
+
+        <input type="text" id="cycle_id" name="cycle_id" placeholder="Cycle" class="form-control" value="<%= @shipment.cycle_id %>">
+      </div>
+
+      <!-- Label and input for address_id -->
+      <div class="form-group">
+        <label for="address_id" class="control-label">
+          Address
+        </label>
+
+        <input type="text" id="address_id" name="address_id" placeholder="Address" class="form-control" value="<%= @shipment.address_id %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @shipment.user_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Shipment
+      </button>
+      or
+      <a href="/shipments">Cancel</a>
+    </form>
+  </div>
+</div>

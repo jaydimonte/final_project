@@ -1,0 +1,55 @@
+<!-- Validation failure messages -->
+<% if @cycle.errors.any? %>
+  <% @cycle.errors.full_messages.each do |message| %>
+    <div class="alert alert-dismissable alert-danger">
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+      <%= message %>
+    </div>
+  <% end %>
+<% end %>
+
+<div class="page-header">
+  <h3>Add Cycle</h3>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <form action="/create_cycle" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for start_date -->
+      <div class="form-group">
+        <label for="start_date" class="control-label">
+          Start date
+        </label>
+
+        <input type="text" id="start_date" name="start_date" placeholder="Start date" class="form-control" value="<%= @cycle.start_date %>">
+      </div>
+
+      <!-- Label and input for end_date -->
+      <div class="form-group">
+        <label for="end_date" class="control-label">
+          End date
+        </label>
+
+        <input type="text" id="end_date" name="end_date" placeholder="End date" class="form-control" value="<%= @cycle.end_date %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+        <label for="user_id" class="control-label">
+          User
+        </label>
+
+        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @cycle.user_id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Create Cycle
+      </button>
+      or
+      <a href="/cycles">Cancel</a>
+    </form>
+  </div>
+</div>

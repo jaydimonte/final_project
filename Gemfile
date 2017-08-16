@@ -70,3 +70,7 @@ end
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'devise', github: 'plataformatec/devise'
 gem 'jquery-rails'
+
+
+gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
+
