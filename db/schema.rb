@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 20170811184318) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "name"
-    t.string "birthday"
+    t.date "birthday"
     t.string "username"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

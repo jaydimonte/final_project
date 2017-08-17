@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  root to: "cycles#index"
+  root to: "users#index"
   
   # Routes for the Address resource:
   # CREATE
@@ -19,7 +19,8 @@ Rails.application.routes.draw do
   get "/delete_address/:id", :controller => "addresses", :action => "destroy"
   #------------------------------
 
-  # Routes for the Shipment resource:
+  # Routes for the Shipment resource
+
   # CREATE
   get "/shipments/new", :controller => "shipments", :action => "new"
   post "/create_shipment", :controller => "shipments", :action => "create"
@@ -70,9 +71,20 @@ Rails.application.routes.draw do
   get "/delete_cycle/:id", :controller => "cycles", :action => "destroy"
   #------------------------------
 
+
+
+
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   mount WebGit::Engine, at: "/rails/git"
+  
+  
+  # Routes for user resource:
+
+  # READ
+  get "/users", :controller => "users", :action => "index"
+  get "/users/:id", :controller => "users", :action => "show"
+  
 end

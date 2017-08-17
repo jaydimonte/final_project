@@ -1,0 +1,150 @@
+<div class="container col-md-offset-2">
+    
+    <!--USER INFO-->
+    
+    <div class="row">
+    <div class="col-md-8">
+    <div class="jumbotron">
+      <h3>
+        <%= @user.username %>
+      </h3>
+      <li> Name: <%= @user.name %> </li>
+      <li> Birthday: <%= @user.birthday %> </li>
+      <li> Email: <%= @user.email %> </li>
+
+    </div>
+    </div>
+    </div> 
+     <!--ADD A THING ROW  -->
+      
+      
+    <div class="row">
+        <div class="col-sm-2">
+          <a href="/addresses/new" class="btn btn-success">New Address</a>
+        </div>
+        <div class="col-sm-2">
+          <a href="/cycles/new" class="btn btn-success">New Cycle</a>
+        </div>
+        <div class="col-sm-2">
+          <a href="/orders/new" class="btn btn-success">New Order</a>
+        </div>
+        <div class="col-sm-2">
+          <a href="/shipments/new" class="btn btn-success">New Shipment</a>
+        </div>
+     </div>
+     
+     
+     <!--CURRENT CYCLE AND NEXT CYCLE ROW-->
+   
+    <div class="row">
+        <div class="col-sm-4">
+        <h1>Current Cycle</h1>
+              <% @cycle.each do |cycle| %>
+              <% if cycle.user_id == current_user.id %>
+                <li>Cycle ID <%= cycle.id %></li>
+                <li><%= cycle.start_date  %></li>
+                <li><%= cycle.end_date %></li>
+              <% end %> 
+              <% end %>
+        </div>
+        
+        <div class="col-sm-4">
+        <h1>Next Cycle</h1>
+              <% @cycle.each do |cycle| %>
+              <% if cycle.user_id == current_user.id %>
+                <li>Cycle ID <%= cycle.id %></li>
+                <li><%= cycle.start_date  %></li>
+                <li><%= cycle.end_date %></li>
+              <% end %> 
+              <% end %>
+        </div>            
+            
+        </div>
+    </div>
+    
+    <!--ALL HISTORY-->
+    
+    <div class="row">
+        <div class="col-sm-8">
+            
+            <h1>History</h1>
+
+        </div>
+
+
+
+  
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @address.each do |address| %>
+      <% if address.user_id == current_user.id %>
+      <tr>
+        <td><%= address.address %></td>
+        <td>
+          <a href="/addresses/<%= address.id %>" class="btn btn-primary">Show</a>
+          <a href="/addresses/<%= address.id %>/edit" class="btn btn-warning">Edit</a>
+        </td>
+      </tr>
+      <% end %> 
+      <% end %>
+    </table>
+    
+    <table class="table table-striped table-hover col-md-8">
+      <tr>
+        <th>Order ID</th>
+        <th>Super</th>
+        <th>Medium</th>
+        <th>Lite</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @order.each do |order| %>
+      <% if order.user_id == current_user.id %>
+      <tr>
+        <td><%= order.id %></td>
+        <td><%= order.super %></td>
+        <td><%= order.medium %></td>
+        <td><%= order.lite %></td>
+
+        <td>
+          <a href="/orders/<%= order.id %>" class="btn btn-primary">Show</a>
+          <a href="/orders/<%= order.id %>/edit" class="btn btn-warning">Edit</a>
+        </td>
+      </tr>
+      <% end %> 
+      <% end %>
+    </table>
+
+
+    <table class="table table-striped table-hover col-md-8">
+      <tr>
+        <th>Cycle ID</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Length</th>
+        <th>Next Start Date</th>
+      </tr>
+
+      <% @cycle.each do |cycle| %>
+      <% if cycle.user_id == current_user.id %>
+      <tr>
+        <td><%= cycle.id %></td>
+        <td><%= cycle.start_date %></td>
+        <td><%= cycle.end_date %></td>
+        <td>
+          <a href="/cycles/<%= cycle.id %>" class="btn btn-primary">Show</a>
+          <a href="/cycles/<%= cycle.id %>/edit" class="btn btn-warning">Edit</a>
+        </td>
+      </tr>
+      <% end %> 
+      <% end %>
+    </table>
+
+  
+</div>
+
+</div>
