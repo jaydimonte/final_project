@@ -38,25 +38,48 @@
    
     <div class="row">
         <div class="col-sm-4">
-        <h1>Current Cycle</h1>
-              <% @cycle.each do |cycle| %>
-              <% if cycle.user_id == current_user.id %>
-                <li>Cycle ID <%= cycle.id %></li>
-                <li><%= cycle.start_date  %></li>
-                <li><%= cycle.end_date %></li>
-              <% end %> 
-              <% end %>
+        <h2>Current Cycle</h2>
+                <li>Cycle ID <%= @currentcycle.id %></li>
+                <li><%= @currentcycle.start_date  %></li>
+                <li><%= @currentcycle.end_date %></li>
         </div>
         
         <div class="col-sm-4">
-        <h1>Next Cycle</h1>
-              <% @cycle.each do |cycle| %>
-              <% if cycle.user_id == current_user.id %>
-                <li>Cycle ID <%= cycle.id %></li>
-                <li><%= cycle.start_date  %></li>
-                <li><%= cycle.end_date %></li>
-              <% end %> 
-              <% end %>
+        <h2>Next Cycle</h2>
+              <form action="/create_cycle" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+        
+              <!-- Label and input for start_date -->
+              <div class="form-group">
+                <label for="start_date" class="control-label">
+                  Start date
+                </label>
+        
+                <input type="text" id="start_date" name="start_date" placeholder="<%= @nextcyclestart %>" class="form-control" value="<%= @cycle.start_date %>">
+              </div>
+        
+              <!-- Label and input for end_date -->
+              <div class="form-group">
+                <label for="end_date" class="control-label">
+                  End date
+                </label>
+        
+                <input type="text" id="end_date" name="end_date" placeholder="<%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>">
+              </div>
+        
+              <!-- Label and input for user_id -->
+              <div class="form-group">
+               
+                <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+              </div>
+        
+              <button class="btn btn-success">
+                Create Cycle
+              </button>
+              or
+              <a href="/cycles">Cancel</a>
+            </form>
         </div>            
             
         </div>
@@ -80,7 +103,7 @@
         <th>Actions</th>
       </tr>
 
-      <% @address.each do |address| %>
+      <% @addresses.each do |address| %>
       <% if address.user_id == current_user.id %>
       <tr>
         <td><%= address.address %></td>
@@ -102,7 +125,7 @@
         <th>Actions</th>
       </tr>
 
-      <% @order.each do |order| %>
+      <% @orders.each do |order| %>
       <% if order.user_id == current_user.id %>
       <tr>
         <td><%= order.id %></td>
@@ -129,7 +152,7 @@
         <th>Next Start Date</th>
       </tr>
 
-      <% @cycle.each do |cycle| %>
+      <% @cycles.each do |cycle| %>
       <% if cycle.user_id == current_user.id %>
       <tr>
         <td><%= cycle.id %></td>

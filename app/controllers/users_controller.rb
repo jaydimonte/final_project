@@ -2,28 +2,27 @@ class UsersController < ApplicationController
   def index
     @users = User.all
 
-    redirect_to("/users/show.html.erb")
+    render("/users/index.html.erb")
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
 
-    @address = Address.all
-    @order = Order.all
-    @cycle = Cycle.all
+    @addresses = Address.all
+    @orders = Order.all
+    @cycles = Cycle.all
+    
+    @address = Address.new
+    @order = Order.new
+    @cycle = Cycle.new
+    
 
     @user_cycles = Cycle.where(:user_id => current_user.id)
-    @counter = 0
     
-    # while @user_cycles.size > @counter 
-    # # @current_cycle = @user_cycles.start_date.maximum
-    #   @counter = @counter + 1 
-    # end 
+    @currentcycle = @user_cycles.order("start_date DESC").first
     
-    # @starting = 0
-    # @ending = 0
-    # @cycle_length = 0
-    # @time_between = 0
+    @nextcyclestart = @currentcycle.start_date + 30
+    @nextcycledend = @currentcycle.end_date + 30
     
     
     render("/users/show.html.erb")
