@@ -20,11 +20,8 @@
 
       <!-- Label and input for user_id -->
       <div class="form-group">
-        <label for="user_id" class="control-label">
-          User
-        </label>
 
-        <input type="text" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= @order.user_id %>">
+        <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
       </div>
 
       <!-- Label and input for super -->
@@ -33,7 +30,7 @@
           Super
         </label>
 
-        <input type="text" id="super" name="super" placeholder="Super" class="form-control" value="<%= @order.super %>">
+        <input type="text" id="super" name="super" placeholder="Enter # 1 - 100" class="form-control" value="<%= @order.super %>">
       </div>
 
       <!-- Label and input for medium -->
@@ -42,7 +39,7 @@
           Medium
         </label>
 
-        <input type="text" id="medium" name="medium" placeholder="Medium" class="form-control" value="<%= @order.medium %>">
+        <input type="text" id="medium" name="medium" placeholder="Enter # 1 - 100" class="form-control" value="<%= @order.medium %>">
       </div>
 
       <!-- Label and input for lite -->
@@ -51,7 +48,7 @@
           Lite
         </label>
 
-        <input type="text" id="lite" name="lite" placeholder="Lite" class="form-control" value="<%= @order.lite %>">
+        <input type="text" id="lite" name="lite" placeholder="Enter # 1 - 100" class="form-control" value="<%= @order.lite %>">
       </div>
 
       <button class="btn btn-success">

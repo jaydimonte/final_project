@@ -15,6 +15,8 @@
       </tr>
 
       <% @addresses.each do |address| %>
+      
+      <% if address.user_id == current_user.id %>
       <tr>
         <td><%= address.user_id %></td>
         <td><%= address.address %></td>
@@ -24,6 +26,8 @@
           <a href="/delete_address/<%= address.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
+      <% end %>
+ 
       <% end %>
     </table>
   </div>

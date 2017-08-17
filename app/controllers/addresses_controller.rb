@@ -8,7 +8,7 @@ class AddressesController < ApplicationController
   def show
     @address = Address.find(params[:id])
 
-    render("addresses/show.html.erb")
+    redirect_to("/addresses")
   end
 
   def new
@@ -61,7 +61,7 @@ class AddressesController < ApplicationController
     if URI(request.referer).path == "/addresses/#{@address.id}"
       redirect_to("/", :notice => "Address deleted.")
     else
-      redirect_to(:back, :notice => "Address deleted.")
+      redirect_to("/", :notice => "Address deleted.")
     end
   end
 end
