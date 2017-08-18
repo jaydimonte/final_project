@@ -17,31 +17,28 @@
     </div> 
      <!--ADD A THING ROW  -->
       
-      
-    <div class="row">
-        <div class="col-sm-2">
-          <a href="/addresses/new" class="btn btn-success">New Address</a>
-        </div>
-        <div class="col-sm-2">
-          <a href="/cycles/new" class="btn btn-success">New Cycle</a>
-        </div>
-        <div class="col-sm-2">
-          <a href="/orders/new" class="btn btn-success">New Order</a>
-        </div>
-        <div class="col-sm-2">
-          <a href="/shipments/new" class="btn btn-success">New Shipment</a>
-        </div>
-     </div>
-     
-     
+
      <!--CURRENT CYCLE AND NEXT CYCLE ROW-->
    
     <div class="row">
         <div class="col-sm-4">
-        <h2>Current Cycle</h2>
-                <li>Cycle ID <%= @currentcycle.id %></li>
-                <li><%= @currentcycle.start_date  %></li>
-                <li><%= @currentcycle.end_date %></li>
+        <h2>Current or Last Cycle</h2>
+                <div class="form-group">
+                <label for="start_date" class="control-label">
+                  Start date
+                </label>
+        
+                <p><%= @recentcycle.start_date %></p>
+              </div>
+        
+              <!-- Label and input for end_date -->
+              <div class="form-group">
+                <label for="end_date" class="control-label">
+                  End date
+                </label>
+        
+                <p><%= @recentcycle.end_date %></p>
+              </div>
         </div>
         
         <div class="col-sm-4">
@@ -56,7 +53,7 @@
                   Start date
                 </label>
         
-                <input type="text" id="start_date" name="start_date" placeholder="<%= @nextcyclestart %>" class="form-control" value="<%= @cycle.start_date %>">
+                <input type="text" id="start_date" name="start_date" placeholder="Should be: <%= @nextcyclestart %>" class="form-control" value="<%= @cycle.start_date %>">
               </div>
         
               <!-- Label and input for end_date -->
@@ -65,7 +62,7 @@
                   End date
                 </label>
         
-                <input type="text" id="end_date" name="end_date" placeholder="<%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>">
+                <input type="text" id="end_date" name="end_date" placeholder="Should be: <%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>">
               </div>
         
               <!-- Label and input for user_id -->
@@ -80,11 +77,61 @@
               or
               <a href="/cycles">Cancel</a>
             </form>
-        </div>            
-            
+        </div>   
         </div>
+        
+        
+        <div class="row">
+        <div class="col-sm-8">
+            <h1>Your next shipment</h1>
+        </div>
+        </div>
+        
+        <div class="row">
+        <div class="col-sm-3">
+            <h4>Your shipment is going to:</h4>
+            <p><%= @recentaddress.address %></p>
+            <p>Do you need to edit your address?</p>
+        </div>
+        <div class="col-sm-3">
+            <h4>It will contain:</h4>
+            <p><%= @recentorder.super %> super tampons</p>
+            <p><%= @recentorder.medium %> medium tampons</p>
+            <p><%= @recentorder.lite %> lite tampons</p>
+            <p>Do you need to edit your order?</p>
+        </div>
+        <div class="col-sm-2">
+            <h4>It should arrive by:</h4>
+            <p><%= @nextshipment %></p>
+            <p>Do you need it earlier?</p>
+        </div>
+        </div>
+        
+        
+    <div class="row">
+        <div class="col-sm-2">
+          <a href="/addresses/new" class="btn btn-warning">Add a new address</a>
+        </div>
+         <div class="col-sm-2">
+          <a href="/addresses/edit/" class="btn btn-warning">Add a new address</a>
+        </div>
+        <!--<div class="col-sm-2">-->
+        <!--  <a href="/cycles/new" class="btn btn-success">New Cycle</a>-->
+        <!--</div>-->
+        <div class="col-sm-2">
+          <a href="/orders/new" class="btn btn-warning">New Order</a>
+        </div>
+        <!--<div class="col-sm-2">-->
+        <!--  <a href="/shipments/new" class="btn btn-success">New Shipment</a>-->
+        <!--</div>-->
+     </div>
+     
     </div>
     
+          
+  
+     
+     
     <!--ALL HISTORY-->
     
     <div class="row">
