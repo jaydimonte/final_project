@@ -39,6 +39,9 @@
         
                 <p><%= @recentcycle.end_date %></p>
               </div>
+              <div class="form-group">
+                <a href="/cycles/edit/<%@recentcycle.id%>" class="btn btn-warning">Update cycle</a>
+              </div>
         </div>
         
         <div class="col-sm-4">
@@ -53,7 +56,7 @@
                   Start date
                 </label>
         
-                <input type="text" id="start_date" name="start_date" placeholder="Should be: <%= @nextcyclestart %>" class="form-control" value="<%= @cycle.start_date %>">
+                <input type="text" id="start_date" name="start_date" placeholder="Should be: <%= @nextcyclestart %>" class="form-control" value="<%= @cycle.start_date %>" required>
               </div>
         
               <!-- Label and input for end_date -->
@@ -62,7 +65,7 @@
                   End date
                 </label>
         
-                <input type="text" id="end_date" name="end_date" placeholder="Should be: <%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>">
+                <input type="text" id="end_date" name="end_date" placeholder="Should be: <%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>" requ>
               </div>
         
               <!-- Label and input for user_id -->
@@ -91,129 +94,60 @@
         <div class="col-sm-3">
             <h4>Your shipment is going to:</h4>
             <p><%= @recentaddress.address %></p>
-            <p>Do you need to edit your address?</p>
+            <!--<p>Do you need to edit your address?</p>-->
         </div>
         <div class="col-sm-3">
             <h4>It will contain:</h4>
             <p><%= @recentorder.super %> super tampons</p>
             <p><%= @recentorder.medium %> medium tampons</p>
             <p><%= @recentorder.lite %> lite tampons</p>
-            <p>Do you need to edit your order?</p>
+            <!--<p>Do you need to edit your order?</p>-->
         </div>
         <div class="col-sm-2">
             <h4>It should arrive by:</h4>
             <p><%= @nextshipment %></p>
-            <p>Do you need it earlier?</p>
+            <!--<p>Do you need it earlier?</p>-->
         </div>
         </div>
-        
-        
-    <div class="row">
-        <div class="col-sm-2">
-          <a href="/addresses/new" class="btn btn-warning">Add a new address</a>
-        </div>
-         <div class="col-sm-2">
-          <a href="/addresses/edit/" class="btn btn-warning">Add a new address</a>
-        </div>
-        <!--<div class="col-sm-2">-->
-        <!--  <a href="/cycles/new" class="btn btn-success">New Cycle</a>-->
-        <!--</div>-->
-        <div class="col-sm-2">
-          <a href="/orders/new" class="btn btn-warning">New Order</a>
-        </div>
-        <!--<div class="col-sm-2">-->
-        <!--  <a href="/shipments/new" class="btn btn-success">New Shipment</a>-->
-        <!--</div>-->
-     </div>
-     
-    </div>
+ 
+ 
+<div class="row">
+  <div class="col-md-2 col-md-offset-6">
+    <form action="/create_shipment" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for order_id -->
+      <div class="form-group">
+        <input type="hidden" id="order_id" name="order_id" placeholder="Order" class="form-control" value="<%= @recentorder.id %>">
+      </div>
+
+      <!-- Label and input for cycle_id -->
+      <div class="form-group">
+         <input type="hidden" id="cycle_id" name="cycle_id" placeholder="Cycle" class="form-control" value="<%= @recentcycle.id %>">
+      </div>
+
+      <!-- Label and input for address_id -->
+      <div class="form-group">
+        <input type="hidden" id="address_id" name="address_id" placeholder="Address" class="form-control" value="<%= @recentaddress.id %>">
+      </div>
+
+      <!-- Label and input for user_id -->
+      <div class="form-group">
+         <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+      </div>
+
+      <button class="btn btn-success">
+        Confirm Shipment for Next Cycle
+      </button>
+      
+    </form>
+  </div>
+</div> 
+ 
     
-          
-  
      
-     
-    <!--ALL HISTORY-->
-    
-    <div class="row">
-        <div class="col-sm-8">
-            
-            <h1>History</h1>
-
-        </div>
-
-
-
-  
-    <table class="table table-striped table-hover">
-      <tr>
-        <th>Address</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @addresses.each do |address| %>
-      <% if address.user_id == current_user.id %>
-      <tr>
-        <td><%= address.address %></td>
-        <td>
-          <a href="/addresses/<%= address.id %>" class="btn btn-primary">Show</a>
-          <a href="/addresses/<%= address.id %>/edit" class="btn btn-warning">Edit</a>
-        </td>
-      </tr>
-      <% end %> 
-      <% end %>
-    </table>
-    
-    <table class="table table-striped table-hover col-md-8">
-      <tr>
-        <th>Order ID</th>
-        <th>Super</th>
-        <th>Medium</th>
-        <th>Lite</th>
-        <th>Actions</th>
-      </tr>
-
-      <% @orders.each do |order| %>
-      <% if order.user_id == current_user.id %>
-      <tr>
-        <td><%= order.id %></td>
-        <td><%= order.super %></td>
-        <td><%= order.medium %></td>
-        <td><%= order.lite %></td>
-
-        <td>
-          <a href="/orders/<%= order.id %>" class="btn btn-primary">Show</a>
-          <a href="/orders/<%= order.id %>/edit" class="btn btn-warning">Edit</a>
-        </td>
-      </tr>
-      <% end %> 
-      <% end %>
-    </table>
-
-
-    <table class="table table-striped table-hover col-md-8">
-      <tr>
-        <th>Cycle ID</th>
-        <th>Start Date</th>
-        <th>End Date</th>
-        <th>Length</th>
-        <th>Next Start Date</th>
-      </tr>
-
-      <% @cycles.each do |cycle| %>
-      <% if cycle.user_id == current_user.id %>
-      <tr>
-        <td><%= cycle.id %></td>
-        <td><%= cycle.start_date %></td>
-        <td><%= cycle.end_date %></td>
-        <td>
-          <a href="/cycles/<%= cycle.id %>" class="btn btn-primary">Show</a>
-          <a href="/cycles/<%= cycle.id %>/edit" class="btn btn-warning">Edit</a>
-        </td>
-      </tr>
-      <% end %> 
-      <% end %>
-    </table>
-
+</div>
   
 </div>
 

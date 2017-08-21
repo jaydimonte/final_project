@@ -8,17 +8,14 @@
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
-      <tr>
-        <th>User</th>
+     <tr>
         <th>Address</th>
         <th>Actions</th>
       </tr>
 
       <% @addresses.each do |address| %>
-      
       <% if address.user_id == current_user.id %>
       <tr>
-        <td><%= address.user_id %></td>
         <td><%= address.address %></td>
         <td>
           <a href="/addresses/<%= address.id %>" class="btn btn-primary">Show</a>
@@ -26,8 +23,7 @@
           <a href="/delete_address/<%= address.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
-      <% end %>
- 
+      <% end %> 
       <% end %>
     </table>
   </div>

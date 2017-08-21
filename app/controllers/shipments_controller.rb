@@ -64,8 +64,8 @@ class ShipmentsController < ApplicationController
 
     if URI(request.referer).path == "/shipments/#{@shipment.id}"
       redirect_to("/", :notice => "Shipment deleted.")
-    else
-      redirect_to(:back, :notice => "Shipment deleted.")
+    # else
+    #   redirect_to(:back, :notice => "Shipment deleted.")
     end
   end
 end

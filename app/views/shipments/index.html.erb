@@ -17,6 +17,8 @@
       </tr>
 
       <% @shipments.each do |shipment| %>
+      <% if shipment.user_id == current_user.id %>
+
       <tr>
         <td><%= shipment.order_id %></td>
         <td><%= shipment.cycle_id %></td>
@@ -28,6 +30,7 @@
           <a href="/delete_shipment/<%= shipment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
+      <% end %>
       <% end %>
     </table>
   </div>

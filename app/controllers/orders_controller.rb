@@ -64,8 +64,8 @@ class OrdersController < ApplicationController
 
     if URI(request.referer).path == "/orders/#{@order.id}"
       redirect_to("/", :notice => "Order deleted.")
-    else
-      redirect_to(:back, :notice => "Order deleted.")
+    # else
+    #   redirect_to(:back, :notice => "Order deleted.")
     end
   end
 end

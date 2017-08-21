@@ -27,7 +27,8 @@ class CyclesController < ApplicationController
     save_status = @cycle.save
 
     if save_status == true
-      redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle created successfully.")
+      # redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle created successfully.")
+      redirect_to("/users/confirmshipment", :notice => "Cycle created successfully.")
     else
       render("cycles/new.html.erb")
     end
@@ -62,8 +63,8 @@ class CyclesController < ApplicationController
 
     if URI(request.referer).path == "/cycles/#{@cycle.id}"
       redirect_to("/", :notice => "Cycle deleted.")
-    else
-      redirect_to(:back, :notice => "Cycle deleted.")
+    # else
+    #   redirect_to(:back, :notice => "Cycle deleted.")
     end
   end
 end

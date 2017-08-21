@@ -8,24 +8,26 @@
 <div class="row">
   <div class="col-md-12">
     <table class="table table-striped table-hover">
-      <tr>
-        <th>Start date</th>
-        <th>End date</th>
-        <th>User</th>
+     <tr>
+        <th>Cycle ID</th>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>Actions</th>
       </tr>
 
       <% @cycles.each do |cycle| %>
+      <% if cycle.user_id == current_user.id %>
       <tr>
+        <td><%= cycle.id %></td>
         <td><%= cycle.start_date %></td>
         <td><%= cycle.end_date %></td>
-        <td><%= cycle.user_id %></td>
         <td>
           <a href="/cycles/<%= cycle.id %>" class="btn btn-primary">Show</a>
           <a href="/cycles/<%= cycle.id %>/edit" class="btn btn-warning">Edit</a>
           <a href="/delete_cycle/<%= cycle.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
         </td>
       </tr>
+      <% end %> 
       <% end %>
     </table>
   </div>

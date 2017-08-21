@@ -6,10 +6,12 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Order</dt>
-      <dd><%= @shipment.order_id %></dd>
+      <dd>Super: <%= @shipment.order.super %></dd>
+      <dd>Medium: <%= @shipment.order.medium %></dd>
+      <dd>Lite: <%= @shipment.order.lite %></dd>
 
       <dt>Cycle</dt>
-      <dd><%= @shipment.cycle_id %></dd>
+      <dd>Start: <%= @shipment.cycle_id %></dd>
 
       <dt>Address</dt>
       <dd><%= @shipment.address_id %></dd>
