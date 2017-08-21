@@ -21,22 +21,55 @@ class UsersController < ApplicationController
     @shipment = Shipment.new
 
     @user_cycles = Cycle.where(:user_id => current_user.id)
+    @cycle_lengths = []
+    
+    #CALCULATIONS
+    
+    @user_cycles.each do |user_cycle|
+      start = Chronic.parse(user_cycle.start_date)
+      finish = Chronic.parse(user_cycle.end_date)
+      length = ( finish - start ) / 86400
+      @cycle_lengths.push(length)
+    end 
+    
+    @cycle_lengths = @cycle_lengths.sum / @cycle_lengths.count
+    
+    @previousend = [Time.now]
+    @nextstart = []
+    
+    @user_cycles.each do |user_cycle|
+      @previousend.push(Chronic.parse(user_cycle.end_date))
+      @nextstart.push(Chronic.parse(user_cycle.start_date))
+    end 
+    
+    @nextstart.push(Time.now)
+    
+    @arraybetween =  @nextstart - @previousend 
+    
+    # @arraybetween.each do |arraybetween|
+    #   @newarray = 
+    # end
+    
+    #FORM STUFF
     
     @recentcycle = @user_cycles.order("start_date DESC").first
     
-    # @nextcyclestart = @recentcycle.start_date + 30
-    # @nextcycleend = @recentcycle.end_date + 30
+    @nextcyclestart = @recentcycle.start_date + 30
+    @nextcycleend = @nextcyclestart + @cycle_lengths
     
-    @nextcyclestart = @recentcycle.start_date 
-    @nextcycleend = @recentcycle.end_date 
+    @countdown =  Chronic.parse(@nextcyclestart) - Time.now
+    @countdown = @countdown / 86400
+    @countdown = @countdown.to_int 
     
     @recentaddress = @addresses.order("updated_at DESC").first
     @recentorder = @orders.order("updated_at DESC").first
 
   # YOU WILL NEED TO CHANGE THIS  
   # @recentshipment = @shipments.order("updated_at DESC").first
-    @nextshipment = @recentcycle.start_date + 25
+    @nextshipment = @nextcyclestart - 5
 
+    
+    
     
     render("/users/show.html.erb")
   end

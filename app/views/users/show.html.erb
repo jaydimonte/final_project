@@ -6,11 +6,20 @@
     <div class="col-md-8">
     <div class="jumbotron">
       <h3>
-        <%= @user.username %>
+        Welcome, <%= @user.username %>!
       </h3>
       <li> Name: <%= @user.name %> </li>
       <li> Birthday: <%= @user.birthday %> </li>
       <li> Email: <%= @user.email %> </li>
+      <h3>
+        Time to next cycle: <%= @countdown %> days
+      </h3>
+      <p>Average cycle length: <%= @cycle_lengths %></p>
+      <p>Median time between: <%= @arraybetween %></p>
+            <p>Median time between: <%= @nextstart %></p>
+            <p>Median time between: <%= @previousend %></p>
+
+
 
     </div>
     </div>
@@ -65,7 +74,7 @@
                   End date
                 </label>
         
-                <input type="text" id="end_date" name="end_date" placeholder="Should be: <%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>" requ>
+                <input type="text" id="end_date" name="end_date" placeholder="Should be: <%= @nextcycleend %>" class="form-control" value="<%= @cycle.end_date %>" required>
               </div>
         
               <!-- Label and input for user_id -->

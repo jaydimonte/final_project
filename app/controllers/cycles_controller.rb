@@ -50,7 +50,7 @@ class CyclesController < ApplicationController
     save_status = @cycle.save
 
     if save_status == true
-      redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle updated successfully.")
+      redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle updated successfully. Now please confirm your next shipment")
     else
       render("cycles/edit.html.erb")
     end

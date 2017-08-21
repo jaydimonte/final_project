@@ -11,13 +11,14 @@
       <dd>Lite: <%= @shipment.order.lite %></dd>
 
       <dt>Cycle</dt>
-      <dd>Start: <%= @shipment.cycle_id %></dd>
+      <dd>Start: <%= @shipment.cycle.start_date %></dd>
+      <dd>End: <%= @shipment.cycle.end_date %></dd>
 
       <dt>Address</dt>
-      <dd><%= @shipment.address_id %></dd>
+      <dd><%= @shipment.address.address %></dd>
 
       <dt>User</dt>
-      <dd><%= @shipment.user_id %></dd>
+      <dd><%= @shipment.user.username %></dd>
 
     </dl>
 

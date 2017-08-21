@@ -74,3 +74,4 @@ gem 'jquery-rails'
 
 gem "starter_generators", :git => "https://github.com/raghubetina/starter_generators"
 
+gem 'chronic'
