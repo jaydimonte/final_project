@@ -27,8 +27,12 @@ class CyclesController < ApplicationController
     save_status = @cycle.save
 
     if save_status == true
-      # redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle created successfully.")
+      @check = Cycle.where(:user_id => current_user.id)
+      if @check.count <= 1 
+      redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle created successfully.")
+      else
       redirect_to("/users/confirmshipment", :notice => "Cycle created successfully.")
+      end
     else
       render("cycles/new.html.erb")
     end
