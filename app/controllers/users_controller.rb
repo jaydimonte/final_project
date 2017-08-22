@@ -9,22 +9,21 @@ class UsersController < ApplicationController
 
     if @check0.count <= 1 
       redirect_to("/cycles")
-    else if @check1.count <= 1
+    else if @check1.count < 1
       redirect_to("/addresses")
-      
-    else if @check2.count <= 1
+    else if @check2.count < 1
       redirect_to("/orders")
-    else
-    # render("/users/index.html.erb")
+    else if 
+      # render("/users/index.html.erb")
       redirect_to("/users/#{current_user.id}")
     end
-
+    end 
+    end
+    end
   end
 
   def show
     
-    
-      
     @user = User.find(current_user.id)
 
     @addresses = Address.all
@@ -92,28 +91,18 @@ class UsersController < ApplicationController
     @countdown =  Chronic.parse(@nextcyclestart) - Time.now
     @countdown = @countdown / 86400
     @countdown = @countdown.to_int 
-    
-    if Address.where(:user_id => current_user.id).count== 0
-    else 
-      @recentaddress = Address.where(:user_id => current_user.id).order("updated_at DESC").first
-    end 
-    
-    if Order.where(:user_id => current_user.id).count == 0
-      
-    else
-    @recentorder = Order.where(:user_id => current_user.id).order("updated_at DESC").first
-    end 
-  # YOU WILL NEED TO CHANGE THIS  
-  # @recentshipment = @shipments.order("updated_at DESC").first
+  
+  
     @nextshipment = @nextcyclestart - 5
-
     
+    @recentaddress = Address.where(:user_id => current_user.id).order("updated_at DESC").first
     
-    
+    @recentorder = Order.where(:user_id => current_user.id).order("updated_at DESC").first
+   
     render("/users/show.html.erb")
   end
 
-def confirmshipment
+  def confirmshipment
     @user = User.find(current_user.id)
 
     @addresses = Address.all
@@ -142,6 +131,6 @@ def confirmshipment
 
     
     render("/users/confirmshipment.html.erb")
-end
+  end 
 
-end
+end   
