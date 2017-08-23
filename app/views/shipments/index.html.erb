@@ -1,8 +1,11 @@
 <div class="page-header">
   <h1>
     Shipments
-    <a href="/shipments/new" class="btn btn-lg btn-success">New Shipment</a>
+    <!--<a href="/shipments/new" class="btn btn-lg btn-success">New Shipment</a>-->
+ 
   </h1>
+  <h3>Go to homepage to create next shipment</h3>
+
 </div>
 
 <div class="row">
@@ -12,6 +15,7 @@
         <th>Order</th>
         <!--<th>Cycle</th>-->
         <th>Address</th>
+        <th>Cycle Start Date </th>
         <th>Actions</th>
       </tr>
 
@@ -25,10 +29,11 @@
           <dd>Lite: <%= shipment.order.lite %></dd>
         </td>
         <td><%= shipment.address.address %></td>
+        <td><%= shipment.cycle.start_date %></td>
         <td>
           <a href="/shipments/<%= shipment.id %>" class="btn btn-primary">Show</a>
-          <a href="/shipments/<%= shipment.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_shipment/<%= shipment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <!--<a href="/shipments/<%= shipment.id %>/edit" class="btn btn-warning">Edit</a>-->
+          <!--<a href="/delete_shipment/<%= shipment.id %>" class="btn btn-danger" rel="nofollow">Delete</a>-->
         </td>
       </tr>
       <% end %>

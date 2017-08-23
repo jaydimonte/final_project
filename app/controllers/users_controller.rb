@@ -8,17 +8,14 @@ class UsersController < ApplicationController
 
 
     if @check0.count <= 1 
-      redirect_to("/cycles")
-    else if @check1.count < 1
+      redirect_to("/cycles", :notice => "Enter a few past cycles to get started.")
+    elsif @check1.count < 1
       redirect_to("/addresses")
-    else if @check2.count < 1
+    elsif @check2.count < 1
       redirect_to("/orders")
-    else if 
+    elsif 
       # render("/users/index.html.erb")
       redirect_to("/users/#{current_user.id}")
-    end
-    end 
-    end
     end
   end
 

@@ -28,7 +28,9 @@ class CyclesController < ApplicationController
 
     if save_status == true
       @check = Cycle.where(:user_id => current_user.id)
-      if @check.count <= 1 
+      @check1 = Address.where(:user_id => current_user.id)
+      @check2 = Order.where(:user_id => current_user.id)
+      if @check.count <= 1 or @check1.count < 1 or @check2.count < 1
       redirect_to("/cycles/#{@cycle.id}", :notice => "Cycle created successfully.")
       else
       redirect_to("/users/confirmshipment", :notice => "Cycle created successfully.")

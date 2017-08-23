@@ -9,13 +9,18 @@
       <dd>Super: <%= @shipment.order.super %></dd>
       <dd>Medium: <%= @shipment.order.medium %></dd>
       <dd>Lite: <%= @shipment.order.lite %></dd>
+      <dd> <a href="/orders/<%= @shipment.order.id %>/edit" class="btn btn-secondary">Edit order</a></dd>
+
 
       <dt>Cycle</dt>
       <dd>Start: <%= @shipment.cycle.start_date %></dd>
       <dd>End: <%= @shipment.cycle.end_date %></dd>
+      <dd> <a href="/cycles/<%= @shipment.cycle.id %>/edit" class="btn btn-secondary">Edit cycle</a></dd>
 
       <dt>Address</dt>
       <dd><%= @shipment.address.address %></dd>
+      <dd> <a href="/addresses/<%= @shipment.address.id %>/edit" class="btn btn-secondary">Edit address</a></dd>
+
 
       <dt>User</dt>
       <dd><%= @shipment.user.username %></dd>
@@ -26,12 +31,12 @@
       <a href="/shipments" class="btn btn-primary">
         Back
       </a>
-      <a href="/shipments/<%= @shipment.id %>/edit" class="btn btn-warning">
-        Edit
-      </a>
-      <a href="/delete_shipment/<%= @shipment.id %>" class="btn btn-danger" rel="nofollow">
-        Delete
-      </a>
+      <!--<a href="/shipments/<%= @shipment.id %>/edit" class="btn btn-warning">-->
+      <!--  Edit-->
+      <!--</a>-->
+      <!--<a href="/delete_shipment/<%= @shipment.id %>" class="btn btn-danger" rel="nofollow">-->
+      <!--  Delete-->
+      <!--</a>-->
     </div>
   </div>
 </div>
