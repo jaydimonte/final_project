@@ -12,7 +12,6 @@
         <th>Order</th>
         <th>Cycle</th>
         <th>Address</th>
-        <th>User</th>
         <th>Actions</th>
       </tr>
 
@@ -20,10 +19,16 @@
       <% if shipment.user_id == current_user.id %>
 
       <tr>
-        <td><%= shipment.order_id %></td>
-        <td><%= shipment.cycle_id %></td>
-        <td><%= shipment.address_id %></td>
-        <td><%= shipment.user_id %></td>
+        <td>
+          <dd>Super: <%= shipment.order.super %></dd>
+          <dd>Medium: <%= shipment.order.medium %></dd>
+          <dd>Lite: <%= shipment.order.lite %></dd>
+        </td>
+        <td>
+          <dd>Start: <%= shipment.cycle.start_date %></dd>
+          <dd>End: <%= shipment.cycle.end_date %></dd>
+        </td>
+        <td><%= shipment.address.address %></td>
         <td>
           <a href="/shipments/<%= shipment.id %>" class="btn btn-primary">Show</a>
           <a href="/shipments/<%= shipment.id %>/edit" class="btn btn-warning">Edit</a>
