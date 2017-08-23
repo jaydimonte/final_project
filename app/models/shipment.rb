@@ -15,7 +15,6 @@ class Shipment < ApplicationRecord
     belongs_to :user
     # belongs_to :tracker, :class_name => "Cycle", :foreign_key => "cycle_id"
     belongs_to :order
-    # belongs_to :shipped_to, :class_name => "Address", :foreign_key => "address_id"
     belongs_to :cycle
     belongs_to :address
 end

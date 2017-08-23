@@ -67,8 +67,8 @@ class CyclesController < ApplicationController
 
     if URI(request.referer).path == "/cycles/#{@cycle.id}"
       redirect_to("/", :notice => "Cycle deleted.")
-    # else
-    #   redirect_to(:back, :notice => "Cycle deleted.")
+    else
+      redirect_to("/", :notice => "Cycle deleted.")
     end
   end
 end
