@@ -93,7 +93,7 @@ class UsersController < ApplicationController
     @countdown = @countdown.to_int 
   
   
-    @nextshipment = @nextcyclestart - 5
+    @nextshipment = @recentcycle.start_date - 5
     
     @recentaddress = Address.where(:user_id => current_user.id).order("updated_at DESC").first
     

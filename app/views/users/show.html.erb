@@ -104,57 +104,73 @@
         <div class="col-sm-3">
             <h4>Your shipment is going to:</h4>
             <p><%= @recentaddress.address %></p>
-            <!--<p>Do you need to edit your address?</p>-->
         </div>
         <div class="col-sm-3">
             <h4>It will contain:</h4>
             <p><%= @recentorder.super %> super tampons</p>
             <p><%= @recentorder.medium %> medium tampons</p>
             <p><%= @recentorder.lite %> lite tampons</p>
-            <!--<p>Do you need to edit your order?</p>-->
+            
         </div>
         <div class="col-sm-2">
             <h4>It should arrive by:</h4>
             <p><%= @nextshipment %></p>
-            <!--<p>Do you need it earlier?</p>-->
+            <p>If you have already received this shipment, make sure to add your next cycle first! You can always edit later for more accurate tracking</p>
         </div>
         </div>
  
  
-<div class="row">
-  <div class="col-md-2 col-md-offset-6">
-    <form action="/create_shipment" method="post">
-      <!-- Hidden input for authenticity token to protect from forgery -->
-      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
-
-      <!-- Label and input for order_id -->
-      <div class="form-group">
-        <input type="hidden" id="order_id" name="order_id" placeholder="Order" class="form-control" value="<%= @recentorder.id %>">
-      </div>
-
-      <!-- Label and input for cycle_id -->
-      <div class="form-group">
-         <input type="hidden" id="cycle_id" name="cycle_id" placeholder="Cycle" class="form-control" value="<%= @recentcycle.id %>">
-      </div>
-
-      <!-- Label and input for address_id -->
-      <div class="form-group">
-        <input type="hidden" id="address_id" name="address_id" placeholder="Address" class="form-control" value="<%= @recentaddress.id %>">
-      </div>
-
-      <!-- Label and input for user_id -->
-      <div class="form-group">
-         <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
-      </div>
-
-      <button class="btn btn-success">
-        Confirm Shipment for Next Cycle
-      </button>
-      
-    </form>
-  </div>
-</div> 
+         <div class="row">
+        <div class="col-sm-3">
+            <h4>Did you move?</h4>
+            <a href="/addresses/new" class="btn btn-warning">Change address</a>
+        </div>
+        <div class="col-sm-3">
+            <h4>Do you need to edit your order?</h4>
+            <a href="/cycles/new" class="btn btn-warning">Change order</a>
+        </div>
+        <div class="col-sm-2">
+       
+       <!--HERE IS THE FORM-->
+       
+         <h4>When you're ready... </h4>
+              <form action="/create_shipment" method="post">
+              <!-- Hidden input for authenticity token to protect from forgery -->
+              <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+        
+              <!-- Label and input for order_id -->
+              <div class="form-group">
+                <input type="hidden" id="order_id" name="order_id" placeholder="Order" class="form-control" value="<%= @recentorder.id %>">
+              </div>
+        
+              <!-- Label and input for cycle_id -->
+              <div class="form-group">
+                 <input type="hidden" id="cycle_id" name="cycle_id" placeholder="Cycle" class="form-control" value="<%= @recentcycle.id %>">
+              </div>
+        
+              <!-- Label and input for address_id -->
+              <div class="form-group">
+                <input type="hidden" id="address_id" name="address_id" placeholder="Address" class="form-control" value="<%= @recentaddress.id %>">
+              </div>
+        
+              <!-- Label and input for user_id -->
+              <div class="form-group">
+                 <input type="hidden" id="user_id" name="user_id" placeholder="User" class="form-control" value="<%= current_user.id %>">
+              </div>
+        
+              <button class="btn btn-success">
+                Confirm Next Shipment
+              </button>
+              
+            </form>
+               
+        </div>
+        </div>
  
+
+   <div class="row">
+     <p></p>
+     <div>
     
      
 </div>
